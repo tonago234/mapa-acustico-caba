@@ -123,20 +123,20 @@ plantilla_leyenda = """
 <div id='maplegend' class='maplegend' 
     style='position: fixed; z-index:9999; background-color: rgba(255, 255, 255, 0.9);
     border-radius: 8px; padding: 12px; font-size: 13px; font-family: "Arial", sans-serif;
-    left: 10px; top: 60px; border: 2px solid #bdc3c7; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);'>
+    left: 10px; top: 90px; border: 2px solid #bdc3c7; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);'>
   <div class='legend-title' style='font-weight: bold; margin-bottom: 8px; font-size: 14px; color: #2c3e50;'>Nivel de Ruido (dBA)</div>
   <div class='legend-scale'>
     <ul class='legend-labels' style='list-style: none; padding: 0; margin: 0;'>
       <li><span style='background:#1100aa;'></span>&ge; 80 dBA (Extremo)</li>
-      <li><span style='background:#451c92;'></span>75 - 79 dBA</li>
-      <li><span style='background:#8121ad;'></span>70 - 74 dBA</li>
-      <li><span style='background:#942a1e;'></span>65 - 69 dBA</li>
-      <li><span style='background:#e74c3c;'></span>60 - 64 dBA</li>
-      <li><span style='background:#e7723c;'></span>55 - 59 dBA</li>
-      <li><span style='background:#e7a33c;'></span>50 - 54 dBA</li>
-      <li><span style='background:#eff312;'></span>45 - 49 dBA</li>
-      <li><span style='background:#1e9905;'></span>40 - 44 dBA</li>
-      <li><span style='background:#0bdf63;'></span>35 - 39 dBA</li>
+      <li><span style='background:#451c92;'></span>75 - 80 dBA</li>
+      <li><span style='background:#8121ad;'></span>70 - 75 dBA</li>
+      <li><span style='background:#942a1e;'></span>65 - 70 dBA</li>
+      <li><span style='background:#e74c3c;'></span>60 - 65 dBA</li>
+      <li><span style='background:#e7723c;'></span>55 - 60 dBA</li>
+      <li><span style='background:#e7a33c;'></span>50 - 55 dBA</li>
+      <li><span style='background:#eff312;'></span>45 - 50 dBA</li>
+      <li><span style='background:#1e9905;'></span>40 - 45 dBA</li>
+      <li><span style='background:#0bdf63;'></span>35 - 40 dBA</li>
       <li><span style='background:#44d480;'></span>&lt; 35 dBA (Tranquilo)</li>
     </ul>
   </div>
