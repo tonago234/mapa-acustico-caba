@@ -46,6 +46,6 @@ Si deseás clonar este repositorio y correr el pipeline de procesamiento en tu p
    ```bash
    python mapa.py
 
-El script procesará los shapefiles y generará el archivo dashboard_ruido_caba.html en la misma carpeta.
+El script procesará los shapefiles y generará el archivo index.html en la misma carpeta.
 
 Autor: Tomás Nahuel Villegas González - [Linkedin](https://www.linkedin.com/in/tomas-n-villegas-g/)
