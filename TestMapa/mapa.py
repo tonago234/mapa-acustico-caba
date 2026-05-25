@@ -151,5 +151,5 @@ macro_leyenda = MacroElement()
 macro_leyenda._template = Template(plantilla_leyenda)
 mapa.add_child(macro_leyenda)
 
-mapa.save("dashboard_ruido_caba.html")
-print("¡Pipeline finalizado! archivo generado: dashboard_ruido_caba.html.")
+mapa.save("index.html")
+print("¡Pipeline finalizado! archivo generado: index.html.")
