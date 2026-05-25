@@ -123,7 +123,7 @@ plantilla_leyenda = """
 <div id='maplegend' class='maplegend' 
     style='position: fixed; z-index:9999; background-color: rgba(255, 255, 255, 0.9);
     border-radius: 8px; padding: 12px; font-size: 13px; font-family: "Arial", sans-serif;
-    left: 10px; top: 40px; border: 2px solid #bdc3c7; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);'>
+    left: 10px; top: 60px; border: 2px solid #bdc3c7; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);'>
   <div class='legend-title' style='font-weight: bold; margin-bottom: 8px; font-size: 14px; color: #2c3e50;'>Nivel de Ruido (dBA)</div>
   <div class='legend-scale'>
     <ul class='legend-labels' style='list-style: none; padding: 0; margin: 0;'>
