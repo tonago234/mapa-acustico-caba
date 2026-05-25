@@ -1,0 +1,17 @@
+# Entornos virtuales de Python
+.venv/
+venv/
+env/
+
+# Caché y compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos de editores de código (como VS Code)
+.vscode/
+
+# Archivos pesados o comprimidos que hayas bajado de BA Data
+*.zip
+*.rar
+*.tar.gz
