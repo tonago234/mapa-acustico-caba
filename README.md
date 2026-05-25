@@ -2,7 +2,7 @@
 
 Un dashboard geoespacial interactivo que visualiza el impacto acústico de fuentes móviles en la Ciudad Autónoma de Buenos Aires, permitiendo comparar los niveles de ruido entre el período diurno y nocturno.
 
-🌐 **[Ver el Dashboard en Vivo (Live Demo)](https://tonago234.github.io/Test-mapa-polucion-CABA/dashboard_ruido_caba.html)**
+🌐 **[Ver el Dashboard en Vivo (Live Demo)](https://tonago234.github.io/mapa-acustico-caba/dashboard_ruido_caba.html)** 
 
 ## 🚀 Arquitectura y Características Principales
 
