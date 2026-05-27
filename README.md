@@ -10,8 +10,8 @@ Un ecosistema analítico y predictivo integrado que procesa el impacto de la con
 ---
 
 ## 🌐 Ver los Dashboards en Vivo (Live Demos)
-* **[Link al Mapa Predictivo de Oportunidades Inmobiliarias](TU_LINK_ACA)**
-* **[Link al Dashboard de Contaminación Acústica (Diurno/Nocturno)](TU_LINK_ACA)**
+* **[Link al Mapa Predictivo de Oportunidades Inmobiliarias]([Mapa_1](https://tonago234.github.io/mapa-acustico-caba/index.html))**
+* **[Link al Dashboard de Contaminación Acústica (Diurno/Nocturno)]([Mapa_2](https://tonago234.github.io/Test-mapa-polucion-CABA/mapa_oportunidades.html))**
 
 ---
 
