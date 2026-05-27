@@ -86,11 +86,12 @@ pip install -r requirements.txt
 ```
 
 Orden de ejecución del Pipeline:
-Correr 01_exploracion.ipynb para procesar, cruzar los Shapefiles y generar el dataset limpio.
 
-Correr 02_modelo_predictivo.ipynb para evaluar métricas e importancia de variables.
+1. Correr 01_exploracion.ipynb para procesar, cruzar los Shapefiles y generar el dataset limpio.
 
-Ejecutar en terminal python 03_mapa_final.py para entrenar el modelo final y exportar el mapa interactivo de oportunidades inmobiliarias (mapa_oportunidades.html).
+2. Correr 02_modelo_predictivo.ipynb para evaluar métricas e importancia de variables.
+
+3. Ejecutar en terminal python 03_mapa_final.py para entrenar el modelo final y exportar el mapa interactivo de oportunidades inmobiliarias (mapa_oportunidades.html).
 
 Ejecutar en terminal python mapa.py para exportar el dashboard base de contaminación acústica (index.html).
 
