@@ -1,51 +1,97 @@
-# 🎧 Mapa Interactivo de Contaminación Acústica - CABA
+# 🏙️🎧 Pipeline de Ciencia de Datos Espaciales: Impacto Acústico y Predicción Inmobiliaria en CABA
 
-Un dashboard geoespacial interactivo que visualiza el impacto acústico de fuentes móviles en la Ciudad Autónoma de Buenos Aires, permitiendo comparar los niveles de ruido entre el período diurno y nocturno.
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![GeoPandas](https://img.shields.io/badge/GeoPandas-139C5A?style=for-the-badge&logo=geopandas&logoColor=white)
+![Folium](https://img.shields.io/badge/Folium-77B829?style=for-the-badge&logo=folium&logoColor=white)
 
-🌐 **[Ver el Dashboard en Vivo (Live Demo)](https://tonago234.github.io/mapa-acustico-caba/index.html)** 
+Un ecosistema analítico y predictivo integrado que procesa el impacto de la contaminación acústica en la Ciudad Autónoma de Buenos Aires y evalúa, mediante Machine Learning, cómo el entorno urbano y el nivel de ruido diurno modelan el precio del metro cuadrado en el mercado inmobiliario.
 
-## 🚀 Arquitectura y Características Principales
+---
 
-Este proyecto no es solo una visualización estática, sino un pipeline de ingeniería de datos GIS optimizado para correr en el navegador sin saturar el DOM:
+## 🌐 Ver los Dashboards en Vivo (Live Demos)
+* **[Link al Mapa Predictivo de Oportunidades Inmobiliarias](https://tonago234.github.io/mapa_oportunidades.html)**
+* **[Link al Dashboard de Contaminación Acústica (Diurno/Nocturno)](https://tonago234.github.io/mapa-acustico-caba/index.html)**
 
-* **Manejo de Capas Mutuamente Excluyentes:** Implementación de `GroupedLayerControl` para alternar fluidamente entre los turnos diurnos y nocturnos mediante *Radio Buttons*, garantizando una interfaz limpia.
-* **Optimización Geométrica:** Aplicación del algoritmo de Douglas-Peucker (`.simplify()`) sobre los polígonos base para reducir en un porcentaje masivo la cantidad de vértices redundantes, bajando drásticamente el peso del archivo HTML final y mejorando los FPS del navegador.
-* **Reproyección de Coordenadas (CRS):** Transformación nativa de las coordenadas proyectadas Gauss-Kruger (EPSG:22195) a grados decimales WGS84 (EPSG:4326) requeridos por los estándares web.
-* **Camera Lock & Padding Espacial:** Restricción de la cámara de Leaflet.js (`max_bounds`) calculada dinámicamente con un *padding* cartográfico, lo que evita que el usuario se pierda en el mapa base global mientras permite explorar libremente los límites de la ciudad.
-* **Máscara de Contención (Bitmasking Visual):** Generación de un polígono global invertido (`.difference()`) para enmascarar el Gran Buenos Aires y el Río de la Plata, forzando la atención visual sobre la huella de CABA.
+---
+
+## 🚀 Arquitectura del Proyecto y Características Principales
+
+Este repositorio está estructurado como un pipeline modular de ingeniería y ciencia de datos, dividido en tres fases clave:
+
+### Fase 1: Ingeniería de Datos GIS y Optimización (`mapa.py` & `01_cruce_espacial.ipynb`)
+Diseñado para procesar datos geométricos pesados a gran escala y optimizarlos para su fluidez en el navegador:
+* **Optimización Geométrica:** Aplicación del algoritmo de Douglas-Peucker (`.simplify()`) sobre los polígonos base de ruido para reducir masivamente la cantidad de vértices redundantes, bajando drásticamente el peso del archivo final.
+* **Manejo de Capas Mutuamente Excluyentes:** Implementación de `GroupedLayerControl` para alternar fluidamente entre los mapas de ruido diurnos y nocturnos mediante botones de radio.
+* **Reproyección de Coordenadas (CRS):** Transformación nativa de coordenadas proyectadas Gauss-Kruger (EPSG:22195) a grados decimales WGS84 (EPSG:4326) requeridos por los estándares web cartográficos.
+* **Camera Lock & Máscara de Contención:** Restricción de la cámara de Leaflet.js (`max_bounds`) combinada con una máscara regional invertida (`.difference()`) para tapar el Gran Buenos Aires y el Río de la Plata, forzando el foco visual exclusivamente en CABA.
+
+### Fase 2: Modelado Predictivo de Machine Learning (`02_modelo_predictivo.ipynb`)
+* **El Cruce Espacial (Spatial Join):** Mediante GeoPandas se intersectaron geométricamente miles de puntos de departamentos en venta con los polígonos de decibeles de ruido correspondientes a su ubicación exacta.
+* **Algoritmo:** Entrenamiento de un modelo `RandomForestRegressor` (Bosque Aleatorio) de Scikit-Learn para predecir la variable objetivo: **Precio por Metro Cuadrado (`precio_x_m2`)**.
+* **Métricas del Modelo:**
+  * **R² Score (Precisión):** 71.24% de la variación de los precios explicada por el modelo.
+  * **MAE (Error Absoluto Medio):** ~351 USD/m², un margen altamente competitivo considerando que el dataset no cuenta con variables cualitativas (estado del depto, amenities, etc.).
+
+### Fase 3: Análisis de Residuos y Mapa de Oportunidades (`03_mapa_final.py`)
+El modelo se utiliza para auditar el mercado inmobiliario calculando los desvíos (Precio Real - Precio Predicho):
+* 🟢 **Verde - Oportunidad (Subvaluado):** El precio real es significativamente menor de lo que la IA predice según su entorno y tamaño.
+* 🔴 **Rojo - Sobrevaluado:** Propiedades con precios inflados respecto a la predicción del modelo.
+* ⚪ **Gris - Precio de Mercado:** Valores alineados con la tendencia del entorno.
+
+---
+
+## 📊 Key Insights (Conclusiones Analíticas)
+
+Al analizar la importancia de las variables (*Feature Importance*) en el algoritmo predictivo, surgieron hallazgos clave sobre el comportamiento del mercado porteño:
+
+1. **La Ubicación Estructural manda (57.7%):** La latitud y la longitud combinadas representan más de la mitad del peso en la formación del precio.
+2. **El "Efecto Puerto Madero" (16.9%):** El modelo debió aislar este barrio de forma categórica (One-Hot Encoding) debido a que maneja una dinámica de precios despegada del resto de la ciudad.
+3. **El impacto real del Ruido (3.5%):** Contrario a la hipótesis inicial, la contaminación acústica (`db_lo_num`) tiene un peso marginal. **Insight de negocio:** El mercado inmobiliario en CABA prioriza fuertemente el estatus, la demanda y la conectividad por encima del confort acústico. Los compradores validan precios altos por vivir en el epicentro de polos comerciales o avenidas (ej. Palermo) a pesar de los niveles elevados de decibeles.
+
+<img width="989" height="590" alt="variablesPorPrecio" src="https://github.com/user-attachments/assets/bc69e463-50f5-43c1-a964-d2353ba73e0e" />
+
+---
 
 ## 🛠️ Stack Tecnológico
-
 * **Lenguaje:** Python 3.x
-* **Procesamiento Espacial:** `GeoPandas`, `Pandas`, `Shapely`
-* **Renderizado Web / UI:** `Folium`, `Leaflet.js`, `branca`
+* **Procesamiento Espacial:** GeoPandas, Pandas, Shapely
+* **Machine Learning:** Scikit-Learn
+* **Visualización y UI:** Folium (Leaflet.js), Matplotlib, Seaborn, branca
+
+---
 
 ## 📂 Fuentes de Datos
+Los datos vectoriales en formato Shapefile fueron obtenidos a través de **BA Data**, el portal oficial de datos abiertos del Gobierno de la Ciudad de Buenos Aires:
+* Mapa de Ruido Diurno y Nocturno - Validado por la Agencia de Protección Ambiental (APrA).
+* Registro de departamentos en venta (Histórico 2018).
 
-Los datos vectoriales (formato Shapefile) fueron obtenidos a través de [BA Data](https://data.buenosaires.gob.ar/dataset/mapa-ruido), el portal oficial de datos abiertos del Gobierno de la Ciudad de Buenos Aires. Representan el nivel sonoro continuo equivalente a largo plazo, validado por la Agencia de Protección Ambiental (APrA).
+---
 
 ## ⚙️ Instalación y Uso Local
 
-Si deseás clonar este repositorio y correr el pipeline de procesamiento en tu propia máquina:
+Para clonar este repositorio y ejecutar el pipeline completo en tu máquina:
 
-1. **Clonar el repositorio:**
-   ```bash
-   git clone git@github.com:tonago234/mapa-acustico-caba.git
-   cd mapa-acustico-caba
+```bash
+# 1. Clonar el repositorio
+git clone [https://github.com/tonago234/Test-mapa-polucion-CABA.git](https://github.com/tonago234/Test-mapa-polucion-CABA.git)
+cd Test-mapa-polucion-CABA
 
-2. **Crear y activar un entorno virtual:**
-   ```bash
-   python -m venv .venv
-   source .venv/Scripts/activate  # En Windows (Git Bash)
+# 2. Crear y activar entorno virtual
+python -m venv .venv
+source .venv/Scripts/activate  # En Windows (Git Bash)
 
-3. **Instalar las dependencias:**
-   ```bash
-   pip install -r requirements.txt
+# 3. Instalar dependencias
+pip install -r requirements.txt
+```
 
-4. **Ejecutar el pipeline:**
-   ```bash
-   python mapa.py
+Orden de ejecución del Pipeline:
+Correr 01_exploracion.ipynb para procesar, cruzar los Shapefiles y generar el dataset limpio.
 
-El script procesará los shapefiles y generará el archivo index.html en la misma carpeta.
+Correr 02_modelo_predictivo.ipynb para evaluar métricas e importancia de variables.
 
-Autor: Tomás Nahuel Villegas González - [Linkedin](https://www.linkedin.com/in/tomas-n-villegas-g/)
+Ejecutar en terminal python 03_mapa_final.py para entrenar el modelo final y exportar el mapa interactivo de oportunidades inmobiliarias (mapa_oportunidades.html).
+
+Ejecutar en terminal python mapa.py para exportar el dashboard base de contaminación acústica (index.html).
+
+Autor: Tomás Nahuel Villegas González - [LinkedIn](https://www.linkedin.com/in/tomas-n-villegas-g/)
