@@ -15,3 +15,10 @@ __pycache__/
 *.zip
 *.rar
 *.tar.gz
+
+# Archivos de datos pesados (Shapefiles y extensiones)
+*.dbf
+*.shp
+*.shx
+*.prj
+*.cpg
