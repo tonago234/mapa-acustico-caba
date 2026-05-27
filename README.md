@@ -83,4 +83,15 @@ source .venv/Scripts/activate  # En Windows (Git Bash)
 
 # 3. Instalar dependencias
 pip install -r requirements.txt
+```
 
+Orden de ejecución del Pipeline:
+Correr 01_exploracion.ipynb para procesar, cruzar los Shapefiles y generar el dataset limpio.
+
+Correr 02_modelo_predictivo.ipynb para evaluar métricas e importancia de variables.
+
+Ejecutar en terminal python 03_mapa_final.py para entrenar el modelo final y exportar el mapa interactivo de oportunidades inmobiliarias (mapa_oportunidades.html).
+
+Ejecutar en terminal python mapa.py para exportar el dashboard base de contaminación acústica (index.html).
+
+Autor: Tomás Nahuel Villegas González - [LinkedIn](https://www.linkedin.com/in/tomas-n-villegas-g/)
